@@ -1,14 +1,15 @@
 import Colors from "../styles/colors";
-import loginImg from "../assets/login.jpg";
+import loginImg from "../assets/signup.jpg";
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Signup() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState('');
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -18,9 +19,13 @@ function Login() {
     setPassword(e.target.value);
   };
 
+  const handleConfirmPasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
   function handleSubmit(e) {
     e.preventDefault();
-    setError("This is how errors will be shown");
+    setError('This is how errors will be shown');
     console.log("FROM LOGIN PAGE", email, password);
   }
   return (
@@ -34,12 +39,11 @@ function Login() {
                 <span className={`${Colors.textAccent}`}>Traverse</span>
               </div>
               <div>
-                dont have an account?{" "}
+                Already have an account?{" "}
                 <span 
                 className={`cursor-pointer ${Colors.textAccent}`}
-                onClick={()=>{navigate('signup')}}
-                >
-                  Sign up
+                onClick={()=>{navigate('/')}}>
+                  Log in
                 </span>
               </div>
             </div>
@@ -48,9 +52,9 @@ function Login() {
             <div className="lg:w-[500px] sm:w-[600px]">
               <form onSubmit={handleSubmit}>
                 <div>
-                  <div className="text-2xl font-bold">Log in</div>
+                  <div className="text-2xl font-bold">Sign up</div>
                   <div className={`${Colors.textGray} pb-2`}>
-                    Enter your username and password to login to the system
+                    Enter your details and sign up to use the application
                   </div>
                 </div>
                 <div className="mb-6">
@@ -64,7 +68,7 @@ function Login() {
                     type="email"
                     id="email"
                     value={email}
-                    onChange={handleEmailChange}
+                    onChange={handleEmailChange} 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="john.doe@company.com"
                     required
@@ -86,20 +90,30 @@ function Login() {
                     onChange={handlePasswordChange}
                     required
                   />
-                  {error ? (
-                    <div className="text-red-500 font-bold"> {error} </div>
-                  ) : (
-                    ""
-                  )}
-                  <div className={`pt-4 ${Colors.textAccent}`}>
-                    Forgot password?
-                  </div>
+                </div>
+                <div className="mb-6">
+                  <label
+                    for="password"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Confirm Password
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="•••••••••"
+                    value={password}
+                    onChange={handlePasswordChange}
+                    required
+                  />
+                  {error ? <div className="text-red-500 font-bold"> {error} </div> : ""}
                 </div>
                 <button
                   type="submit"
                   className={` ${Colors.primaryBtn} flex pl-8 items-center text-white focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm w-full sm:w-auto px-5 py-2.5 text-center`}
                 >
-                  Login <ChevronRight />
+                  Signup <ChevronRight />
                 </button>
               </form>
             </div>
@@ -108,7 +122,7 @@ function Login() {
         <div className="w-full hidden lg:block h-screen">
           <img
             src={loginImg}
-            alt="login image"
+            alt="Signup image"
             className="object-cover h-full w-full"
           />
         </div>
@@ -117,4 +131,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;
