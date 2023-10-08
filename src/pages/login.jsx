@@ -6,6 +6,7 @@ import { useState } from "react";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState('');
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -17,7 +18,8 @@ function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(email, password);
+    setError('This is how errors will be shown');
+    console.log("FROM LOGIN PAGE", email, password);
   }
   return (
     <>
@@ -79,6 +81,7 @@ function Login() {
                     onChange={handlePasswordChange}
                     required
                   />
+                  {error ? <div className="text-red-500 font-bold"> {error} </div> : ""}
                   <div className={`pt-4 ${Colors.textAccent}`}>
                     Forgot password?
                   </div>
