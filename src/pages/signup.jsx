@@ -1,6 +1,5 @@
 import Colors from "../styles/colors";
 import loginImg from "../assets/signup.jpg";
-import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +8,7 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -25,7 +24,7 @@ function Signup() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setError('This is how errors will be shown');
+    setError("This is how errors will be shown");
     console.log("FROM LOGIN PAGE", email, password);
   }
   return (
@@ -40,9 +39,12 @@ function Signup() {
               </div>
               <div>
                 Already have an account?{" "}
-                <span 
-                className={`cursor-pointer ${Colors.textAccent}`}
-                onClick={()=>{navigate('/')}}>
+                <span
+                  className={`cursor-pointer ${Colors.textAccent}`}
+                  onClick={() => {
+                    navigate("/");
+                  }}
+                >
                   Log in
                 </span>
               </div>
@@ -68,7 +70,7 @@ function Signup() {
                     type="email"
                     id="email"
                     value={email}
-                    onChange={handleEmailChange} 
+                    onChange={handleEmailChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="john.doe@company.com"
                     required
@@ -107,13 +109,31 @@ function Signup() {
                     onChange={handlePasswordChange}
                     required
                   />
-                  {error ? <div className="text-red-500 font-bold"> {error} </div> : ""}
+                  {error ? (
+                    <div className="text-red-500 font-bold"> {error} </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <button
                   type="submit"
                   className={` ${Colors.primaryBtn} flex pl-8 items-center text-white focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm w-full sm:w-auto px-5 py-2.5 text-center`}
                 >
-                  Signup <ChevronRight />
+                  Signup
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                    />
+                  </svg>
                 </button>
               </form>
             </div>

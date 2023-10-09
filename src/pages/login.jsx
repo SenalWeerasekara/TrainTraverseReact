@@ -1,6 +1,5 @@
 import Colors from "../styles/colors";
 import loginImg from "../assets/login.jpg";
-import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -35,9 +34,11 @@ function Login() {
               </div>
               <div>
                 dont have an account?{" "}
-                <span 
-                className={`cursor-pointer ${Colors.textAccent}`}
-                onClick={()=>{navigate('signup')}}
+                <span
+                  className={`cursor-pointer ${Colors.textAccent}`}
+                  onClick={() => {
+                    navigate("signup");
+                  }}
                 >
                   Sign up
                 </span>
@@ -99,7 +100,21 @@ function Login() {
                   type="submit"
                   className={` ${Colors.primaryBtn} flex pl-8 items-center text-white focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm w-full sm:w-auto px-5 py-2.5 text-center`}
                 >
-                  Login <ChevronRight />
+                  Login
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                    />
+                  </svg>
                 </button>
               </form>
             </div>
